@@ -7,19 +7,45 @@
 
 // [1,2,3].map(item=>item + 1)
 
-class MathHandle{
-    constructor(x,y){
-        this.x = x
-        this.y = y
+// class MathHandle{
+//     constructor(x,y){
+//         this.x = x
+//         this.y = y
+//     }
+//     add(){
+//         return this.x + this.y
+//     }
+// }
+
+// const m = new MathHandle(1,2)
+// // console.log(m.add())
+
+// console.log(typeof MathHandle)  //function
+// console.log(MathHandle.prototype.constructor === MathHandle)   //true
+// console.log(m.__proto__ === MathHandle.prototype)   //true
+
+// 动物
+class Animal {
+    constructor(name){
+        this.name = name
     }
-    add(){
-        return this.x + this.y
+    eat(){
+        console.log(this.name + ' eat')
     }
 }
 
-const m = new MathHandle(1,2)
-// console.log(m.add())
+// 狗
+class Dog extends Animal {
+    constructor(name){
+        super(name)
+        this.name = name
+    }
+    say () {
+        console.log(this.name + ' say')
+    }
+}
 
-console.log(typeof MathHandle)  //function
-console.log(MathHandle.prototype.constructor === MathHandle)   //true
-console.log(m.__proto__ === MathHandle.prototype)   //true
+// 绑定原型，实现继承
+const dog = new Dog('哈士奇')
+dog.say()   //哈士奇 say
+dog.eat()   //哈士奇 eat
