@@ -69,33 +69,59 @@
 //     console.log('fail')
 // })
 
-function loadImg(src){
-    const promise = new Promise(function(resolve, reject){
-        var img = document.createElement('img')
-        img.onload = function(){
-            resolve(img)
-        }
-        img.onerror = function(){
-            reject()
-        }
-        img.src = src
+// function loadImg(src){
+//     const promise = new Promise(function(resolve, reject){
+//         var img = document.createElement('img')
+//         img.onload = function(){
+//             resolve(img)
+//         }
+//         img.onerror = function(){
+//             reject()
+//         }
+//         img.src = src
+//     })
+//     return promise
+// }
+
+// var src = 'https://www.imooc.com/static/img/index/logo.png'
+// var result = loadImg(src)
+// result.then(function(img){
+//     console.log(img.width)
+// }, function(){
+//     console.log('fail')
+// })
+// result.then(function(img){
+//     console.log(img.height)
+// })
+
+// var obj = {a: 100, b: 200}
+// // var item
+// for(var item in obj){
+//     console.log(item)
+// }
+// console.log(item)
+
+// const obj = {a: 100, b: 200}
+// for(let item in obj){
+//     console.log(item)
+// }
+// console.log(item)
+
+function fn(){
+    console.log('real', this)
+
+    var arr = [1, 2, 3]
+    arr.map(item => {
+        console.log(this)
     })
-    return promise
 }
 
-var src = 'https://www.imooc.com/static/img/index/logo.png'
-var result = loadImg(src)
-result.then(function(img){
-    console.log(img.width)
-}, function(){
-    console.log('fail')
-})
-result.then(function(img){
-    console.log(img.height)
-})
+fn.call({a: 100})
 
-
-
+// real {a: 100}
+// {a: 100}
+// {a: 100}
+// {a: 100}
 
 
 
