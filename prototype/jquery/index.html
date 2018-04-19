@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>juery test 1</p>
+    <p>juery test 2</p>
+    <p>juery test 3</p>
+    <p>juery test 4</p>
+
+    <div id="div1">
+        <p>juery test in div</p>
+    </div>
+
+    <script src="./jquery.js"></script>
+    <script>
+        // 插件扩展
+        console.log($.fn)
+        $.fn.getNodeName = function(){
+            alert(this[0].nodeName)
+        }
+    </script>
+    <script>
+        // 验证
+        $p = $('p')
+        $p.getNodeName()
+
+        $div1 = $('#div1')
+        $div1.getNodeName()
+    </script>
+</body>
+</html>
