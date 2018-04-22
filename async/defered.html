@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>defered test</p>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script>
+        // var wait = function(){
+        //     var task = function(){
+        //         console.log('执行完成')
+        //     }
+        //     setTimeout(task, 2000)
+        // }
+
+        // wait()
+
+        function waitHandle(){
+            // 定义
+            var dtd = $.Deferred()
+
+            var wait = function(dtd) {
+                var task = function() {
+                    console.log('执行完成')
+
+                    // 成功
+                    dtd.resolve()
+                    // 失败
+                    // dtd.reject()
+                }
+                setTimeout(task, 2000)
+
+                // wait返回
+                return dtd.promise()
+            }
+            
+            // 最终返回
+            return wait(dtd)
+        }
+
+        var w = waitHandle()
+        $.when(w).then(function(){
+            console.log('ok 1')
+        }, function(){
+            console.log('err 1')
+        })
+        // w.then(function(){
+        //     console.log('ok 2')
+        // }, function(){
+        //     console.log('err 2')
+        // })
+        // w.then(function(){
+        //     console.log('ok 3')
+        // }, function(){
+        //     console.log('err 3')
+        // })
+    </script>
+</body>
+</html>

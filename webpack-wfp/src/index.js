@@ -107,24 +107,50 @@
 // }
 // console.log(item)
 
-function fn(){
-    console.log('real', this)
+// function fn(){
+//     console.log('real', this)
 
-    var arr = [1, 2, 3]
-    arr.map(item => {
-        console.log(this)
-    })
-}
+//     var arr = [1, 2, 3]
+//     arr.map(item => {
+//         console.log(this)
+//     })
+// }
 
-fn.call({a: 100})
+// fn.call({a: 100})
 
 // real {a: 100}
 // {a: 100}
 // {a: 100}
 // {a: 100}
 
+import 'babel-polyfill'
 
+function loadImg(src) {
+    var promise = new Promise(function(resolve,reject){
+        var img = document.createElement('img')
+        img.onload = function(){
+            resolve(img)
+        }
+        img.onerror = function(){
+            reject('图片加载失败')
+        }
 
+        img.src = src
+    })
+    return promise
+}
+
+var src1 = 'https://www.imooc.com/static/img/index/logo.png'
+var src2 = 'https://img1.mukewang.com/5333a2590001069f02000200-100-100.jpg'
+
+const load = async function(){
+    const img1 = await loadImg(src1)
+    console.log(img1)
+    const img2 = await loadImg(src2)
+    console.log(img2)
+}
+
+load()
 
 
 

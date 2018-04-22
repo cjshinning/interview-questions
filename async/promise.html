@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>promise test</p>
+    <script>
+        function loadImg(src) {
+            var promise = new Promise(function(resolve,reject){
+                var img = document.createElement('img')
+                // throw new Error('自定义错误')
+                img.onload = function(){
+                    resolve(img)
+                }
+                img.onerror = function(){
+                    reject('图片加载失败')
+                }
+
+                img.src = src
+            })
+            return promise
+        }
+
+        // var src = 'https://www.imooc.com/static/img/index/logo1.png'
+        // var result = loadImg(src)
+
+        // result.then(function(img){
+        //     console.log(1,img.width)
+        //     return img
+        // }).then(function(img){
+        //     console.log(2,img.height)
+        //     return img
+        // }).catch(function(ex){
+        //     console.log(ex)
+        // })
+        
+        // var src1 = 'https://www.imooc.com/static/img/index/logo.png'
+        // var result1 = loadImg(src1)
+        // var src2 = 'https://img.mukewang.com/5ac356a6000166ec09360316.jpg'
+        // var result2 = loadImg(src2)
+
+        // result1.then(function(img1){
+        //     console.log('第一个图片加载完成', img1.width)
+        //     return result2
+        // }).then(function(img2){
+        //     console.log('第二个图片加载完成', img2.width)
+        // }).catch(function(ex){
+        //     console.log(ex)
+        // })
+
+        var src1 = 'https://www.imooc.com/static/img/index/logo.png'
+        var result1 = loadImg(src1)
+        var src2 = 'https://img1.mukewang.com/5333a2590001069f02000200-100-100.jpg'
+        var result2 = loadImg(src2)
+
+        Promise.all([result1,result2]).then(function(datas){
+            console.log('all, ' + datas[0])
+            console.log('all, ' + datas[1])
+        })
+
+        Promise.race([result1,result2]).then(function(data){
+            console.log('race, ' + data)
+        })
+    </script>
+</body>
+</html>
