@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vdom</title>
+</head>
+<body>
+    <div id="container">test vdom</div>
+    <button id="changeData">修改表格</button>
+    <script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.js"></script>
+    <script>
+        // 添加一个注释
+        var data = [
+            {
+                name: '张三',
+                age: 20,
+                address: '北京'
+            },
+            {
+                name: '李四',
+                age: 21,
+                address: '上海'
+            },
+            {
+                name: '王五',
+                age: 22,
+                address: '广州'
+            }
+        ]
+        // 渲染函数
+        function render(data){
+            var $container = $('#container')
+
+            // 清空容器
+            $container.html('')
+
+            // 拼接table
+            var $table = $('<table>')
+
+            $table.append($('<tr><th>name</th><th>age</th><th>adress</th></tr>'))
+
+            data.forEach(function(item){
+                $table.append($('<tr><th>'+item.name+'</th><th>'+item.age+'</th><th>'+item.address+'</th></tr>'))
+            })
+            
+            // 渲染到页面
+            $container.append($table)
+        }
+
+        $('#changeData').click(function(){
+            data[1].age = 30
+            data[2].address = '深圳'
+
+            // 再次渲染
+            render(data)
+        })
+
+        // 页面初始渲染
+        render(data)
+    </script>
+</body>
+</html>
